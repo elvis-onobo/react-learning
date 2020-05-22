@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Joke from './component/Joke';
+import TodoItem from './component/TodoItem';
 
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-        </p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React Today
-        </a>
-			</header>
+			<div>
+				<Joke question="What to do" answer="whatever you want" />
+				<Joke answer="change the world" />
+			</div>
+			<div>
+				<TodoItem />
+			</div>
 		</div>
 	);
 }
