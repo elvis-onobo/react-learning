@@ -5,6 +5,12 @@ function TodoItem() {
 		<div>
 			<input type="checkbox" />
 			<p>Placeholder text</p>
+
+			<input type="checkbox" />
+			<p>Placeholder text</p>
+
+			<input type="checkbox" />
+			<p>Placeholder text</p>
 		</div>
 	)
 }
