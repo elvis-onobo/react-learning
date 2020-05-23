@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-function Joke(props) {
-	return (
-		<div>
-			<p style={{ display: props.punchLine ? 'block' : 'none' }}>Question: {props.punchLine}</p>
-		</div>
-	)
+class Joke extends Component {
+	render() {
+		return (
+			<div>
+				<p style={{ display: this.props.punchLine ? 'block' : 'none' }}>Question: {this.props.punchLine}</p>
+			</div>
+		)
+	}
 }
 
 export default Joke
