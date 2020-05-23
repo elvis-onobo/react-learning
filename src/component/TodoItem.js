@@ -4,7 +4,9 @@ class TodoItem extends React.Component {
 	render() {
 		return (
 			<div>
-				<input type="checkbox" checked={this.props.completed} />
+				<input type="checkbox"
+					checked={this.props.completed}
+					onChange={() => console.log('Clicked')} />
 				<p>{this.props.text}</p>
 			</div>
 		)

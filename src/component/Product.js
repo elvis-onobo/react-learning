@@ -8,7 +8,7 @@ class Product extends React.Component {
 		}
 
 		return (
-			<div style={style}>
+			<div style={style} >
 				<p>{this.props.name}</p>
 				<p>{this.props.price}</p>
 				<p>{this.props.description}</p>

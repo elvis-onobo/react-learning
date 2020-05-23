@@ -7,6 +7,7 @@ import productsData from './data/productsData';
 import Product from './component/Product';
 import todosData from './data/todosData';
 import LoggedIn from './component/LoggedIn';
+import StateEvent from './component/StateEvents';
 
 class App extends Component {
 	constructor() {
@@ -28,6 +29,7 @@ class App extends Component {
 		return (
 			<div className="App" >
 				<LoggedIn isLoggedIn={true} />
+				<StateEvent />
 				{jokeComponents}
 				{productComponents}
 				{todosComponents}
