@@ -17,6 +17,23 @@ class App extends Component {
 			jokes: jokesData,
 			products: productsData
 		}
+		this.handleChange = this.handleChange.bind(this)
+	}
+
+
+	handleChange(id) {
+		this.setState(prevState => {
+			const updatedTodos = prevState.todos.map(todo => {
+				if (todo.id === id) {
+					todo.completed = !todo.completed
+				}
+				return todo
+			})
+
+			return {
+				todos: updatedTodos
+			}
+		})
 	}
 
 	render() {
@@ -24,16 +41,15 @@ class App extends Component {
 
 		const productComponents = this.state.products.map(product => <Product key={product.id} name={product.name} price={product.price} description={product.description} />)
 
-		const todosComponents = this.state.todos.map(todo => <TodoItem key={todo.id} text={todo.text} completed={todo.completed} />)
+		const todosComponents = this.state.todos.map(todo => <TodoItem id={todo.id} text={todo.text} handleChange={this.handleChange} />)
 
 		return (
 			<div className="App" >
 				<LoggedIn isLoggedIn={true} />
 				<StateEvent />
 				{jokeComponents}
-				{productComponents}
 				{todosComponents}
-				<TodoItem />
+				{productComponents}
 			</div >
 		)
 	}

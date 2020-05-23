@@ -8,6 +8,7 @@ class StateEvent extends Component {
 		}
 		this.handleClick = this.handleClick.bind(this)
 		this.squareNumber = this.squareNumber.bind(this)
+		this.resetState = this.resetState.bind(this)
 	}
 
 	handleClick() {
@@ -26,12 +27,17 @@ class StateEvent extends Component {
 		})
 	}
 
+	resetState() {
+		this.setState({ count: 0 })
+	}
+
 	render() {
 		return (
 			<div>
 				<h1>{this.state.count}</h1>
 				<button onClick={this.handleClick}>Change!</button>
 				<button onClick={this.squareNumber}>Square Number!</button>
+				<button onClick={this.resetState}>Reset</button>
 			</div>
 		)
 	}
