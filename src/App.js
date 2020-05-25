@@ -8,6 +8,7 @@ import Product from './component/Product';
 import todosData from './data/todosData';
 import LoggedIn from './component/LoggedIn';
 import StateEvent from './component/StateEvents';
+import Conditional from './component/Conditional';
 
 class App extends Component {
 	constructor() {
@@ -15,7 +16,8 @@ class App extends Component {
 		this.state = {
 			todos: todosData,
 			jokes: jokesData,
-			products: productsData
+			products: productsData,
+			isLoading: true
 		}
 		this.handleChange = this.handleChange.bind(this)
 	}
@@ -36,6 +38,14 @@ class App extends Component {
 		})
 	}
 
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({
+				isLoading: false
+			})
+		}, 1500)
+	}
+
 	render() {
 		const jokeComponents = this.state.jokes.map(joke => <Joke key={joke.id} question={joke.question} punchLine={joke.punchLine} />)
 
@@ -46,6 +56,8 @@ class App extends Component {
 		return (
 			<div className="App" >
 				<LoggedIn isLoggedIn={true} />
+				{/* conditional for loading or not should be done in your App component. Functions should only be responsible for rendering one thing and not deciding what is rendered */}
+				{this.state.isLoading ? <h1>Loading</h1> : <Conditional />}
 				<StateEvent />
 				{jokeComponents}
 				{todosComponents}
