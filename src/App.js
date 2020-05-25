@@ -17,7 +17,8 @@ class App extends Component {
 			todos: todosData,
 			jokes: jokesData,
 			products: productsData,
-			isLoading: true
+			isLoading: true,
+			unreadMessages: ['a', 'b']
 		}
 		this.handleChange = this.handleChange.bind(this)
 	}
@@ -59,6 +60,10 @@ class App extends Component {
 				{/* conditional for loading or not should be done in your App component. Functions should only be responsible for rendering one thing and not deciding what is rendered */}
 				{this.state.isLoading ? <h1>Loading</h1> : <Conditional />}
 				<StateEvent />
+				{
+					this.state.unreadMessages.length > 0 &&
+					<h1>You have {this.state.unreadMessages.length} unread messages</h1>
+				}
 				{jokeComponents}
 				{todosComponents}
 				{productComponents}
