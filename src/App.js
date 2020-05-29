@@ -9,6 +9,7 @@ import todosData from './data/todosData';
 import LoggedIn from './component/LoggedIn';
 import StateEvent from './component/StateEvents';
 import Conditional from './component/Conditional';
+import Button from './component/Button';
 
 class App extends Component {
 	constructor() {
@@ -18,9 +19,11 @@ class App extends Component {
 			jokes: jokesData,
 			products: productsData,
 			isLoading: true,
-			unreadMessages: ['a', 'b']
+			unreadMessages: ['a', 'b'],
+			isLoggedIn: false
 		}
 		this.handleChange = this.handleChange.bind(this)
+		this.handleClick = this.handleClick.bind(this)
 	}
 
 
@@ -39,12 +42,21 @@ class App extends Component {
 		})
 	}
 
+	handleClick() {
+		this.setState(prevState => {
+			return {
+				isLoggedIn: !prevState.isLoggedIn
+			}
+		})
+	}
+
 	componentDidMount() {
 		setTimeout(() => {
 			this.setState({
-				isLoading: false
+				isLoading: false,
+				isLoggedIn: true
 			})
-		}, 1500)
+		}, 2000)
 	}
 
 	render() {
@@ -56,9 +68,10 @@ class App extends Component {
 
 		return (
 			<div className="App" >
-				<LoggedIn isLoggedIn={true} />
+				{this.state.isLoggedIn ? <LoggedIn /> : <h1>You are Logged Out</h1>}
 				{/* conditional for loading or not should be done in your App component. Functions should only be responsible for rendering one thing and not deciding what is rendered */}
 				{this.state.isLoading ? <h1>Loading</h1> : <Conditional />}
+				<Button isLoggedIn={this.state.isLoggedIn} handleClick={this.handleClick} />
 				<StateEvent />
 				{
 					this.state.unreadMessages.length > 0 &&

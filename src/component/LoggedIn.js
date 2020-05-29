@@ -11,7 +11,7 @@ class LoggedIn extends Component {
 	render() {
 		return (
 			<div>
-				<h1>You are currently {this.state.isLoggedIn ? 'Logged In' : 'Logged Out'}</h1>
+				<h1>You are currently Logged In</h1>
 			</div>
 		)
 	}
