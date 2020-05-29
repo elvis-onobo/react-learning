@@ -20,7 +20,9 @@ class App extends Component {
 			products: productsData,
 			isLoading: true,
 			unreadMessages: ['a', 'b'],
-			isLoggedIn: false
+			isLoggedIn: false,
+			character: {},
+			loading: false
 		}
 		this.handleChange = this.handleChange.bind(this)
 		this.handleClick = this.handleClick.bind(this)
@@ -51,6 +53,16 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+		const url = 'https://swapi.dev/api/people/1'
+		this.setState({ loading: true })
+		fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					loading: false,
+					character: data
+				})
+			})
 		setTimeout(() => {
 			this.setState({
 				isLoading: false,
@@ -72,6 +84,7 @@ class App extends Component {
 				{/* conditional for loading or not should be done in your App component. Functions should only be responsible for rendering one thing and not deciding what is rendered */}
 				{this.state.isLoading ? <h1>Loading</h1> : <Conditional />}
 				<Button isLoggedIn={this.state.isLoggedIn} handleClick={this.handleClick} />
+				{this.state.loading ? 'Loading' : this.state.character.name}
 				<StateEvent />
 				{
 					this.state.unreadMessages.length > 0 &&
